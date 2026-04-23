@@ -195,13 +195,21 @@ st.markdown("""
     color: var(--cyan);
 }
 
-/* ── Voice button ── */
-.bk-btn {
+/* ── Voice button (Bokeh) ── */
+.bk-btn, .bk-btn-default {
     font-family: var(--sans) !important;
-    background: transparent !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    background: #0f1417 !important;
     border: 1px solid var(--cyan) !important;
     color: var(--cyan) !important;
-    letter-spacing: 0.15em !important;
+    border-radius: 2px !important;
+    transition: all 0.2s ease !important;
+}
+.bk-btn:hover, .bk-btn-default:hover {
+    background: rgba(0,212,255,0.08) !important;
+    box-shadow: 0 0 12px rgba(0,212,255,0.2) !important;
 }
 
 /* ── Transcript box ── */
@@ -522,10 +530,7 @@ with left_col:
     st.markdown("<div class='sec-header'>Control por voz</div>", unsafe_allow_html=True)
 
     # ── Voice button ──
-    stt_button = Button(label="🎙  INICIAR ESCUCHA", width=300,
-                        styles={"font-family": "Barlow Condensed", "font-size": "14px",
-                                "letter-spacing": "2px", "background": "#0f1417",
-                                "color": "#00d4ff", "border": "1px solid #00d4ff"})
+    stt_button = Button(label="🎙  INICIAR ESCUCHA", width=300)
     stt_button.js_on_event("button_click", CustomJS(code="""
         var recognition = new webkitSpeechRecognition();
         recognition.continuous = false;
